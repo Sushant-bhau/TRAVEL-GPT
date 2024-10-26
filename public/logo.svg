@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <!-- Background -->
+  <rect width="800" height="600" fill="black" />
+
+  <!-- Mountain and Island -->
+  <g id="mountain">
+    <!-- Mountain Shape -->
+    <path d="M400,200 C420,180 460,160 480,250 Q460,270 440,260 T400,200" fill="yellow" />
+    <path d="M400,200 C380,180 340,160 320,250 Q340,270 360,260 T400,200" fill="yellow" />
+    <!-- Island Shape -->
+    <ellipse cx="400" cy="290" rx="150" ry="50" fill="purple" />
+  </g>
+
+  <!-- Palm Trees -->
+  <g id="palm-trees">
+    <!-- Left Palm -->
+    <rect x="360" y="250" width="5" height="30" fill="brown" />
+    <path d="M360,250 Q350,240 340,250" fill="green" />
+    <path d="M365,250 Q355,240 345,250" fill="green" />
+    <!-- Right Palm -->
+    <rect x="440" y="250" width="5" height="30" fill="brown" />
+    <path d="M440,250 Q450,240 460,250" fill="green" />
+    <path d="M445,250 Q455,240 465,250" fill="green" />
+  </g>
+
+  <!-- Text Elements -->
+  <text x="50%" y="350" font-family="Verdana" font-size="50" fill="#A387F1" text-anchor="middle">TRAVEL-GPT</text>
+  <text x="50%" y="400" font-family="Verdana" font-size="20" fill="#A387F1" text-anchor="middle">YOU ENJOY, LET US PLAN!</text>
+</svg>
