@@ -1,13 +1,29 @@
 import React, { useState, useEffect } from "react";
 import GooglePlacesAutocomplete from "react-google-places-autocomplete";
 import { Input } from "@/components/ui/input";
-import { SelectBudgetOptions, SelectTravelsList } from "@/constants/options";
+import { chatSession } from "@/service/AIModaL";
+import {
+  AI_PROMPT,
+  SelectBudgetOptions,
+  SelectTravelsList,
+} from "@/constants/options";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { FcGoogle } from "react-icons/fc";
+import { useGoogleLogin } from "@react-oauth/google";
 
 function CreateTrip() {
   const [place, setPlace] = useState();
   const [formData, setFormData] = useState([]);
+  const [openDailog, setOpenDailog] = useState(false);
   const handleInputChange = (name, value) => {
     if (name == "noOfDays" && value > 15) {
       console.log("Please enter Trip Days less than 15");
@@ -21,7 +37,18 @@ function CreateTrip() {
     console.log(formData);
   }, [formData]);
 
-  const onGenerateTrip = () => {
+  const login = useGoogleLogin({
+    onSuccess: (codeResp) => console.log(codeResp),
+    onError: (error) => console.log(error),
+  });
+
+  const onGenerateTrip = async () => {
+    const user = localStorage.getItem("user");
+    if (!user) {
+      setOpenDailog(true);
+      return;
+    }
+
     if (
       (formData?.noOfDays > 5 && !formData?.location) ||
       !formData?.budget ||
@@ -31,7 +58,20 @@ function CreateTrip() {
       return;
     }
     console.log(formData);
+    const FINAL_PROMPT = AI_PROMPT.replace(
+      "{location}",
+      formData?.location?.label
+    )
+      .replace("{totalDays}", formData?.noOfDays)
+      .replace("{traveler}", formData?.travelers)
+      .replace("{budget}", formData?.budget)
+      .replace("{totalDays}", formData?.noOfDays);
+    console.log(FINAL_PROMPT);
+    const result = await chatSession.sendMessage(FINAL_PROMPT);
+    console.log(result?.response?.text());
   };
+
+  const GetUserProfile
   return (
     <div className=" ml-40 mr-40 sm:px-10 md:px-32 lg:px-56 xl:px-10 px-5 mt-10 flex flex-col  align-center ">
       <h2 className="font-bold text-3xl">Tell us your travel preferences</h2>
@@ -114,6 +154,24 @@ function CreateTrip() {
       <div className="my-10 md-10 justify-center  flex">
         <Button onClick={onGenerateTrip}>Generate Trip</Button>
       </div>
+      <Dialog open={openDailog}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogDescription>
+              <img src="/logo2.png" />
+              <h2 className="font-bold text-lg mt-7">Sign In With Google </h2>
+              <p>Sign in to the App with Google authentication securly</p>
+              <Button
+                onClick={login}
+                className="w-full mt-5 flex gap-4 items-center"
+              >
+                <FcGoogle className="h-10 w-10" />
+                Sign In With Google
+              </Button>
+            </DialogDescription>
+          </DialogHeader>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
