@@ -19,11 +19,17 @@ import {
 } from "@/components/ui/dialog";
 import { FcGoogle } from "react-icons/fc";
 import { useGoogleLogin } from "@react-oauth/google";
-
+import axios from "axios";
+import { db } from "@/service/firebaseConfig";
+import { doc, setDoc } from "firebase/firestore";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import { useNavigate } from "react-router-dom";
 function CreateTrip() {
   const [place, setPlace] = useState();
   const [formData, setFormData] = useState([]);
   const [openDailog, setOpenDailog] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
   const handleInputChange = (name, value) => {
     if (name == "noOfDays" && value > 15) {
       console.log("Please enter Trip Days less than 15");
@@ -37,8 +43,27 @@ function CreateTrip() {
     console.log(formData);
   }, [formData]);
 
+  const GetUserProfile = (tokenInfo) => {
+    axios
+      .get(
+        `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${tokenInfo?.access_token}`,
+        {
+          headers: {
+            Authorization: `Bearer ${tokenInfo?.access_token}`,
+            Accept: " Application/json",
+          },
+        }
+      )
+      .then((resp) => {
+        console.log(resp);
+        localStorage.setItem("user", JSON.stringify(resp?.data));
+        setOpenDailog(false);
+        onGenerateTrip();
+      });
+  };
+
   const login = useGoogleLogin({
-    onSuccess: (codeResp) => console.log(codeResp),
+    onSuccess: (codeResp) => GetUserProfile(codeResp),
     onError: (error) => console.log(error),
   });
 
@@ -58,6 +83,7 @@ function CreateTrip() {
       return;
     }
     console.log(formData);
+    setLoading(true);
     const FINAL_PROMPT = AI_PROMPT.replace(
       "{location}",
       formData?.location?.label
@@ -68,10 +94,28 @@ function CreateTrip() {
       .replace("{totalDays}", formData?.noOfDays);
     console.log(FINAL_PROMPT);
     const result = await chatSession.sendMessage(FINAL_PROMPT);
-    console.log(result?.response?.text());
+    console.log("--", await result?.response?.text()); // Await the response text
+    const responseText = await result?.response?.text();
+    setLoading(false);
+    console.log(responseText);
+
+    SaveAiTrip(responseText);
+  };
+  const SaveAiTrip = async (TripData) => {
+    setLoading(true);
+    const user = JSON.parse(localStorage.getItem("user"));
+    const docId = Date.now().toString();
+
+    await setDoc(doc(db, "AITrips", docId), {
+      userSelection: formData,
+      tripData: JSON.parse(TripData),
+      userEmail: user?.email,
+      id: docId,
+    });
+    setLoading(false);
+    navigate(`/view-trip/${docId}`);
   };
 
-  const GetUserProfile
   return (
     <div className=" ml-40 mr-40 sm:px-10 md:px-32 lg:px-56 xl:px-10 px-5 mt-10 flex flex-col  align-center ">
       <h2 className="font-bold text-3xl">Tell us your travel preferences</h2>
@@ -152,11 +196,20 @@ function CreateTrip() {
         </div>
       </div>
       <div className="my-10 md-10 justify-center  flex">
-        <Button onClick={onGenerateTrip}>Generate Trip</Button>
+        <Button disabled={loading} onClick={onGenerateTrip}>
+          {loading ? (
+            <AiOutlineLoading3Quarters className="h-7 w-7 animate-spin" />
+          ) : (
+            "Generate Trip"
+          )}
+        </Button>
       </div>
       <Dialog open={openDailog}>
         <DialogContent>
           <DialogHeader>
+            <DialogTitle className="text-center font-bold mt-4 md-3">
+              Just One Step Away!{" "}
+            </DialogTitle>
             <DialogDescription>
               <img src="/logo2.png" />
               <h2 className="font-bold text-lg mt-7">Sign In With Google </h2>
