@@ -118,11 +118,24 @@ function CreateTrip() {
 
   return (
     <div className=" ml-40 mr-40 sm:px-10 md:px-32 lg:px-56 xl:px-10 px-5 mt-10 flex flex-col  align-center ">
-      <h2 className="font-bold text-3xl">Tell us your travel preferences</h2>
-      <p className="mt-3 text-gray-500 text-xl">
-        Just provide some basic information and our trip planning tool will
-        create a customized itinerary based on your preferences.
-      </p>
+      <div className=" ml-10 flex flex-row  align-center gap-5">
+        <div>
+          <img
+            src="/travel.jpg"
+            className="w-[500px] h-[200px] hover:scale-105 transition-full rounded-md"
+          />
+        </div>
+        <div className="mt-10">
+          <h2 className="  font-bold text-3xl">
+            Tell us your travel preferences
+          </h2>
+          <p className="mt-3 text-gray-500 text-xl">
+            Just provide some basic information and our trip planning tool will
+            create a customized itinerary based on your preferences.
+          </p>
+        </div>
+      </div>
+
       <div className="mt-20 flex flex-col gap-10">
         <h2 className="text-xl my-3 font-medium">
           What is your destination of choice?
@@ -143,7 +156,8 @@ function CreateTrip() {
 
         <div>
           <h2 className="text-xl my-3 font-medium">
-            For how many days are you planning the trip?
+            For how many days are you planning the trip?{" "}
+            <h2 className="text-gray-500 text-sm">(min:1,max:10)</h2>
           </h2>
           <Input
             placeholder={"Ex.3"}
@@ -173,7 +187,7 @@ function CreateTrip() {
         </div>
         <div>
           <h2 className="text-xl my-3 font-medium">
-            Who do you plan to travel with on this trip?
+            Who do you plan to travel with, On this trip?
           </h2>
           <div className="grid grid-cols-4 gap-5 mt-5  ">
             {SelectTravelsList.map((item, index) => (

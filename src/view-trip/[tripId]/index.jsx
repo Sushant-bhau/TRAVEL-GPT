@@ -27,15 +27,22 @@ const Viewtrip = () => {
     }
   };
   return (
-    <div className="p-10 md:px-20 lg:px-44 xl:px-56">
-      {/* information section*/}
-      <InfoSection trip={trip} />
-      {/* Recommended Hotels */}
-      <Hotels trip={trip} />
-      {/* Daily Plan */}
-      <PlacesToVisit trip={trip} />
-      {/*footer */}
-      <Footer trip={trip} />
+    <div>
+      <div className="p-10 md:px-20 lg:px-44 xl:px-56 mx-15 ">
+        {/* information section*/}
+        <InfoSection trip={trip} />
+        {/* Recommended Hotels */}
+        <Hotels trip={trip} />
+        {/* Daily Plan */}
+        <PlacesToVisit trip={trip} />
+        {/*footer */}
+      </div>
+      <div className=" mt-5 my-10">
+        <img
+          src="/thank.jpg"
+          className=" ml-[3.5rem] mt-10 w-[1400px] h-[200px] "
+        />
+      </div>
     </div>
   );
 };

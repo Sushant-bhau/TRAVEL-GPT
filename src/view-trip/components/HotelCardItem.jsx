@@ -4,7 +4,30 @@ import { FcMoneyTransfer } from "react-icons/fc";
 import { IoStarHalfOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import { IoInformationCircleSharp } from "react-icons/io5";
+import { useEffect, useState } from "react";
+import { GetPlaceDetails } from "@/service/GlobalApi";
+import { PHOTO_REF_URL } from "@/service/GlobalApi";
 function HotelCardItem({ hotel }) {
+  const [photoUrl, setPhotoUrl] = useState("");
+  useEffect(() => {
+    hotel && GetPlacePhoto();
+  }, [hotel]);
+  const GetPlacePhoto = async () => {
+    const data = {
+      textQuery: hotel?.hotelName,
+    };
+
+    const result = await GetPlaceDetails(data).then((resp) => {
+      console.log(resp.data.places[0].photos[0].name);
+
+      const PhotoUrl = PHOTO_REF_URL.replace(
+        "{NAME}",
+        resp.data.places[0].photos[0].name
+      );
+      setPhotoUrl(PhotoUrl);
+    });
+  };
+
   return (
     <Link
       to={
@@ -16,7 +39,10 @@ function HotelCardItem({ hotel }) {
       target="_blank"
     >
       <div className="hover:scale-105 transition-all cursor-pointer">
-        <img src="/placeholder2.png" className="rounded-xl" />
+        <img
+          src={photoUrl ? photoUrl : "/imggg.jpeg"}
+          className="rounded-xl h-[180px] w-full object-cover"
+        />
         <div className="my-2 flex flex-col gap-2">
           <h2 className="font-medium">{hotel.hotelName}</h2>
 
