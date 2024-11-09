@@ -43,7 +43,7 @@ function Hero() {
           <AboutUs />
         </div>
         <div className="w-full h-[300px] hover:transform hover:scale-105 transition-all md-56 mb-10">
-          <ImageSlider images={images2} time={3000} />
+          <ImageSlider images={images2} time={2000} />
         </div>
       </div>
       <div className="w-full h-25 flex justify-between items-center px-10 bg-gray-400">
