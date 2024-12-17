@@ -59,24 +59,22 @@ function Header() {
 
   return (
     <div className="p-3 shadow-sm flex justify-between items-center bg-white ">
-      <img
-        src="/log.png"
-        width="50"
-        height="50"
-        className="rounded-full transition-all hover:scale-105"
-        alt="Travel Gpt Logo"
-      />
-      <div className="ml-35 mr-[-15rem]">
+      <a href="/">
+        <img
+          src="/log.png"
+          width="50"
+          height="50"
+          className="rounded-full transition-all hover:scale-105"
+          alt="Travel Gpt Logo"
+        />
+      </a>
+
+      <div className="">
         <img src="logog.png" width="200" height="200" />
       </div>
       <div>
         {user ? (
           <div className="flex items-center gap-1">
-            <a href="/">
-              <Button variant="outline" className="rounded-full ">
-                <FaHome />
-              </Button>
-            </a>
             <a href="/create-trip">
               <Button variant="outline" className="rounded-full ">
                 <IoIosAddCircle />
@@ -116,23 +114,29 @@ function Header() {
       </div>
       <Dialog open={openDailog}>
         <DialogContent>
-          <DialogHeader>
-            <DialogTitle className="text-center font-bold mt-4 md-3">
-              Just One Step Away!{" "}
+          <DialogHeader className="flex justify-between items-center  flex-row ">
+            <DialogTitle className=" font-bold ml-10 mt-4 md-3">
+              Just One Step Away
             </DialogTitle>
-            <DialogDescription>
-              <img src="/logo2.png" />
-              <h2 className="font-bold text-lg mt-7">Sign In With Google </h2>
-              <p>Sign in to the App with Google authentication securly</p>
-              <Button
-                onClick={login}
-                className="w-full mt-5 flex gap-4 items-center"
-              >
-                <FcGoogle className="h-10 w-10" />
-                Sign In With Google
-              </Button>
-            </DialogDescription>
+            <DialogClose
+              onClick={() => setOpenDailog(false)}
+              className="text-white bg-red-500 p-2 rounded-xs w-10"
+            >
+              X
+            </DialogClose>
           </DialogHeader>
+          <DialogDescription>
+            <img src="/logo2.png" />
+            <h2 className="font-bold text-lg mt-7">Sign In With Google </h2>
+            <p>Sign in to the App with Google authentication securly</p>
+            <Button
+              onClick={login}
+              className="w-full mt-5 flex gap-4 items-center"
+            >
+              <FcGoogle className="h-10 w-10" />
+              Sign In With Google
+            </Button>
+          </DialogDescription>
         </DialogContent>
       </Dialog>
     </div>

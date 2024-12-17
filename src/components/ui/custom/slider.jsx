@@ -17,13 +17,13 @@ const ImageSlider = ({ images, time }) => {
   }, [images.length, time]);
 
   return (
-    <div className="relative w-full h-[300px] overflow-hidden">
+    <div className="relative lg:w-[1000px] lg:h-[400px] md:w-[700px] md:h-[200px] sm:w-[400px] sm:h-[200px] object-cover rounded mx:40">
       {images.map((image, index) => (
         <img
           key={index}
           src={image}
           alt={`Slide ${index + 1}`}
-          className={`absolute top-0 left-0 transition-opacity duration-1000 h-[300px] w-full object-cover rounded-xl ${
+          className={`absolute top-0 left-0 transition-opacity duration-1000 lg:w-[1000px] lg:h-[400px] md:w-[700px] md:h-[200px] sm:w-[400px] sm:h-[200px]  mx:40 object-cover rounded-xl ${
             index === currentIndex ? "opacity-100" : "opacity-0"
           }`}
         />
