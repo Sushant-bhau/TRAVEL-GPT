@@ -5,7 +5,8 @@ import { db } from "@/service/firebaseConfig";
 import { InfoSection } from "@/view-trip/components/InfoSection";
 import { Hotels } from "@/view-trip/components/Hotels";
 import { PlacesToVisit } from "../components/PlacesToVisit";
-import Footer from "../components/Footer";
+import Footer2 from "../components/Footer2";
+import Footer from "@/components/ui/custom/Footer";
 const Viewtrip = () => {
   const { tripId } = useParams();
   const [trip, setTrip] = useState([]);
@@ -37,12 +38,13 @@ const Viewtrip = () => {
         <PlacesToVisit trip={trip} />
         {/*footer */}
       </div>
-      <div className=" mt-5 my-10">
-        <img
-          src="/thank.jpg"
-          className=" ml-[3.5rem] mt-10 w-[1400px] h-[200px] "
-        />
+      <div className=" mt-5 my-10 ml-20">
+        <Footer2 />
       </div>
+
+      <img src="/thanks.png" alt="" className="w-full h-[200px]" />
+
+      <Footer />
     </div>
   );
 };

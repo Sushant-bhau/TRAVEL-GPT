@@ -4,6 +4,7 @@ import reactLogo from "./assets/react.svg";
 import "./App.css";
 import { Button } from "./components/ui/button";
 import Hero from "./components/ui/custom/Hero";
+import Footer from "./components/ui/custom/Footer";
 function App() {
   const [count, setCount] = useState(0);
 

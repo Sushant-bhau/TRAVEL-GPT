@@ -1,8 +1,8 @@
 import React from "react";
 import { Button } from "../button";
 import { Link } from "react-router-dom";
-import ImageSlider from "./slider";
-import AboutUs from "./about";
+import ImageSlider from "./slider2";
+
 import Footer from "./footer";
 function Hero() {
   const images = [
@@ -18,7 +18,7 @@ function Hero() {
   const images2 = ["/tra.jpg", "/tra2.jpg", "/tra3.jpg"];
 
   return (
-    <div className="flex flex-col items-center  lg:mx-50 md:mx-30 sm:mx-30 gap-8  ">
+    <div className="flex flex-col items-center  lg:mx-50 md:mx-50 sm:mx-50 gap-8 ">
       <h1 className="font-extrabold text-[50px] text-center mt-5 ">
         <span className="text-[#f56551]">
           Your AI-Powered Travel Companion:
@@ -39,7 +39,7 @@ function Hero() {
 
       <div className="flex flex-col items-center mt-6 w-full">
         <h2 className="text-5xl font-bold mb-4 text-center">About Us</h2>
-        <div className="flex  flex-col md:flex-row  items-center gap-8 max-w-5xl w-full md:mx-10 ">
+        <div className="flex  flex-col md:flex-row  items-center gap-8 max-w-5xl w-full md:mx-40 ">
           <div className="flex justify-center  transition-allhover:scale-105">
             <img
               src="/logo2.png"
@@ -73,8 +73,8 @@ function Hero() {
           />
 
           <div className="flex justify-center items-center lg:w-full md:w-[1000px] sm:w-[700px]">
-            <h2 className="  font-bold text-black text-2xl algin-text-center sm:w[50px]">
-              Let TRAVEL-GPT bring your next destination to life!
+            <h2 className="  font-bold text-black text-xl algin-text-center mx-30 sm:w[70px]">
+              Let TRAVEL-GPT plan next destination for you!
             </h2>
           </div>
         </div>

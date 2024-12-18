@@ -58,53 +58,63 @@ function Header() {
   });
 
   return (
-    <div className="p-3 shadow-sm flex justify-between items-center bg-white ">
-      <a href="/">
-        <img
-          src="/log.png"
-          width="50"
-          height="50"
-          className="rounded-full transition-all hover:scale-105"
-          alt="Travel Gpt Logo"
-        />
-      </a>
-
-      <div className="">
-        <img src="logog.png" width="200" height="200" />
+    <div className=" shadow-sm flex justify-between items-center bg-white ">
+      <div className="flex flex-row gap-1">
+        <a href="/">
+          <img
+            src="/log.png"
+            width="50"
+            height="50"
+            className="rounded-full transition-all hover:scale-105"
+            alt="Travel Gpt Logo"
+          />
+        </a>
+        <h2 className="text-[#646cff] font-bold mt-1 text-3xl">TRAVEL GPT</h2>
       </div>
       <div>
         {user ? (
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-1 ">
             <a href="/create-trip">
               <Button variant="outline" className="rounded-full ">
                 <IoIosAddCircle />
                 Trip
               </Button>
             </a>
-            <a href="/my-trips">
-              <Button variant="outline" className="rounded-full ">
-                Travelled
-              </Button>
-            </a>
 
-            <Popover>
+            <Popover className="h-[38px] w-[5px] rounded-full cursor-pointer">
               <PopoverTrigger className="bg-transparent  hover:scale-105  transition-all">
                 <img
                   src={user?.picture ? user.picture : "/avatar.jpeg"}
-                  className="h-[38px] w-[38px] rounded-full cursor-pointer"
+                  className="h-[28px] w-[28px] rounded-full cursor-pointer"
                 />
+                <h2 className="text-[#646cff]   font-bold text-sm">Profile</h2>
               </PopoverTrigger>
               <PopoverContent>
-                <h2
-                  className="cursor-pointer"
-                  onClick={() => {
-                    googleLogout();
-                    localStorage.clear();
-                    window.location.reload();
-                  }}
-                >
-                  Log-out
-                </h2>
+                <div className="flex flex-col gap-5 p-2 ">
+                  <a href="/">
+                    <h2 variant="outline" className="rounded-full ">
+                      Home
+                    </h2>
+                  </a>
+                  <a href="/my-trips">
+                    <h2 variant="outline" className="rounded-full ">
+                      My Trips
+                    </h2>
+                  </a>
+                  <a href="/">
+                    <h2
+                      className="cursor-pointer text-[#646cff]  "
+                      onClick={() => {
+                        googleLogout();
+                        localStorage.clear();
+
+                        window.location.reload();
+                      }}
+                    >
+                      Log-out
+                    </h2>
+                  </a>
+                </div>
               </PopoverContent>
             </Popover>
           </div>
@@ -115,7 +125,7 @@ function Header() {
       <Dialog open={openDailog}>
         <DialogContent>
           <DialogHeader className="flex justify-between items-center  flex-row ">
-            <DialogTitle className=" font-bold ml-10 mt-4 md-3">
+            <DialogTitle className=" font-bold ml-36 mr-10 mt-4 md-3">
               Just One Step Away
             </DialogTitle>
             <DialogClose
@@ -126,8 +136,13 @@ function Header() {
             </DialogClose>
           </DialogHeader>
           <DialogDescription>
-            <img src="/logo2.png" />
-            <h2 className="font-bold text-lg mt-7">Sign In With Google </h2>
+            <img
+              src="/logo.jpeg"
+              className="h-[300px] w-[500px] justify-center border-2 border-black rounded"
+            />
+            <h2 className="font-bold text-lg mt-7 text-black">
+              Sign In With Google{" "}
+            </h2>
             <p>Sign in to the App with Google authentication securly</p>
             <Button
               onClick={login}
