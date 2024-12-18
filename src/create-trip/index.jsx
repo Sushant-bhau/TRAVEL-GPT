@@ -25,7 +25,7 @@ import { db } from "@/service/firebaseConfig";
 import { doc, setDoc } from "firebase/firestore";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
-import Footer from "../components/ui/custom/Footer";
+import Footer from "./Footer";
 
 function CreateTrip() {
   const [place, setPlace] = useState();

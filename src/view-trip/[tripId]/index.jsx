@@ -6,7 +6,7 @@ import { InfoSection } from "@/view-trip/components/InfoSection";
 import { Hotels } from "@/view-trip/components/Hotels";
 import { PlacesToVisit } from "../components/PlacesToVisit";
 import Footer2 from "../components/Footer2";
-import Footer from "@/components/ui/custom/Footer";
+import Footer from "./Footer";
 const Viewtrip = () => {
   const { tripId } = useParams();
   const [trip, setTrip] = useState([]);

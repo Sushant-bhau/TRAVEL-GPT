@@ -11,7 +11,7 @@ import {
 import react from "react";
 import { useNavigation } from "react-router-dom";
 import UserTripCardItem from "./components/UserTripCardItem";
-import Footer from "../components/ui/custom/Footer";
+import Footer from "./Footer";
 function Mytrips() {
   useEffect(() => {
     GetUserTrips();
