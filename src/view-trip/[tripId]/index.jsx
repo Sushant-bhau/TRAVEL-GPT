@@ -6,7 +6,7 @@ import { InfoSection } from "@/view-trip/components/InfoSection";
 import { Hotels } from "@/view-trip/components/Hotels";
 import { PlacesToVisit } from "../components/PlacesToVisit";
 import Footer2 from "../components/Footer2";
-import Footer from "./Footer";
+
 const Viewtrip = () => {
   const { tripId } = useParams();
   const [trip, setTrip] = useState([]);
@@ -28,7 +28,7 @@ const Viewtrip = () => {
     }
   };
   return (
-    <div>
+    <div className="w-full">
       <div className="p-10 md:px-20 lg:px-44 xl:px-56 mx-15 ">
         {/* information section*/}
         <InfoSection trip={trip} />
@@ -42,9 +42,14 @@ const Viewtrip = () => {
         <Footer2 />
       </div>
 
-      <img src="/thanks.png" alt="" className="w-full h-[200px]" />
+      <img src="/thanks2.jpg" alt="" className="w-full h-[100px]" />
 
-      <Footer />
+      <div className="w-full h-[50px] flex justify-between items-center px-10 bg-black text-white">
+        <h2 className=" font-bold">Copyright©️TRAVEL-GPT2024</h2>
+        <h2 className=" font-bold ">
+          Created by <a href="https://github.com/Sushant-bhau">Sushant_Bhau</a>
+        </h2>
+      </div>
     </div>
   );
 };

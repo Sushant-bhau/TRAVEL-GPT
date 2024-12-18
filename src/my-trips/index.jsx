@@ -11,7 +11,7 @@ import {
 import react from "react";
 import { useNavigation } from "react-router-dom";
 import UserTripCardItem from "./components/UserTripCardItem";
-import Footer from "./Footer";
+
 function Mytrips() {
   useEffect(() => {
     GetUserTrips();
@@ -73,7 +73,12 @@ function Mytrips() {
         </div>
       </div>
 
-      <Footer />
+      <div className="w-full h-[50px] flex justify-between items-center px-10 bg-black text-white">
+        <h2 className=" font-bold">Copyright©️TRAVEL-GPT2024</h2>
+        <h2 className=" font-bold ">
+          Created by <a href="https://github.com/Sushant-bhau">Sushant_Bhau</a>
+        </h2>
+      </div>
     </div>
   );
 }

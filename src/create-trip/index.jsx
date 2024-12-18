@@ -25,7 +25,6 @@ import { db } from "@/service/firebaseConfig";
 import { doc, setDoc } from "firebase/firestore";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
-import Footer from "./Footer";
 
 function CreateTrip() {
   const [place, setPlace] = useState();
@@ -120,7 +119,7 @@ function CreateTrip() {
   };
 
   return (
-    <div>
+    <div className="w-full">
       <div className=" lg:ml-30 lg:mr-30 sm:px-1 md:px-5 lg:px-56  sm:ml-10 sm:mr-10 md:ml-10 md:mr-10  xl:px-10 px-5 mt-10 flex flex-col  align-center ">
         <div className=" flex flex-row  align-center gap-5">
           <div>
@@ -255,8 +254,11 @@ function CreateTrip() {
           </DialogContent>
         </Dialog>
       </div>
-      <div>
-        <Footer />
+      <div className="w-full h-[50px] flex justify-between items-center px-10 bg-black text-white">
+        <h2 className=" font-bold">Copyright©️TRAVEL-GPT2024</h2>
+        <h2 className=" font-bold ">
+          Created by <a href="https://github.com/Sushant-bhau">Sushant_Bhau</a>
+        </h2>
       </div>
     </div>
   );
