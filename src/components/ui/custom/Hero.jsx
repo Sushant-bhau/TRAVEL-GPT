@@ -3,7 +3,7 @@ import { Button } from "../button";
 import { Link } from "react-router-dom";
 import ImageSlider from "./slider2";
 
-import Footer from "./footer";
+import Footer from "./Footer";
 function Hero() {
   const images = [
     "/img1.jpeg",
