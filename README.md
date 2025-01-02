@@ -65,5 +65,6 @@ Technologies used in the project:
 *   Gemini AI
 
 <h2>💖Like my work?</h2>
+<p align="center"><img src="https://socialify.git.ci/Sushant-bhau/TRAVEL-GPT/image?language=1&amp;owner=1&amp;name=1&amp;stargazers=1&amp;theme=Light" alt="project-image"></p>
 
 This project needs a ⭐️ from you. Don't forget to leave a star ⭐️.
