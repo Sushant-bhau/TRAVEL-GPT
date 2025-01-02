@@ -2,6 +2,8 @@
 
 <p id="description">TRAVEL-GPT—your personal travel assistant powered by advanced AI and designed to make every journey seamless exciting and tailored just for you! TRAVEL-GPT understands your travel needs whether you’re planning a spontaneous weekend getaway or a carefully budgeted adventure . With TRAVEL-GPT you’ll receive a meticulously crafted travel plan complete with handpicked hotel options full of essential details like pricing location ratings and nearby points of interest. Each itinerary is designed with care including daily schedules the best times to visit attractions travel routes ticket information and much more so your journey flows as smoothly as possible.</p>
 
+<p align="center"><img src= "public/tra2.jpg" alt="project-image"></p>
+
 <h2>🚀 Demo</h2>
 
 [https://travelgpt.netlify.app](https://travelgpt.netlify.app)
